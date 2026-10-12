@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>新番挂件</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header id="titlebar" data-tauri-drag-region>
+        <span class="brand" data-tauri-drag-region>新番</span>
+        <span id="season" class="season" data-tauri-drag-region></span>
+        <span class="spacer" data-tauri-drag-region></span>
+        <button id="tz-btn" class="chip" title="切换时区">JST</button>
+        <button id="filter-btn" class="chip" title="只看在看 / 显示全部">在看</button>
+        <button id="refresh-btn" class="icon" title="刷新">⟳</button>
+        <button id="settings-btn" class="icon" title="设置">⚙</button>
+        <button id="hide-btn" class="icon" title="隐藏到托盘">—</button>
+      </header>
+
+      <nav id="weekdays"></nav>
+
+      <main id="list">
+        <div class="loading">加载中…</div>
+      </main>
+
+      <footer id="status"></footer>
+
+      <section id="settings" class="hidden">
+        <div class="settings-head">
+          <span>设置</span>
+          <button id="settings-close" class="icon">✕</button>
+        </div>
+        <div class="settings-body">
+          <label class="field">
+            <span>时区显示</span>
+            <select id="set-tz">
+              <option value="JST">日本时间 (JST)</option>
+              <option value="CST">北京时间 (CST)</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>默认只看在看</span>
+            <input type="checkbox" id="set-only" />
+          </label>
+
+          <label class="field">
+            <span>数据缓存时长（小时）</span>
+            <input type="number" id="set-refresh" min="1" max="168" step="1" />
+          </label>
+
+          <label class="field">
+            <span>开机自动启动</span>
+            <input type="checkbox" id="set-autostart" />
+          </label>
+
+          <div class="watching-block">
+            <div class="watching-title">在看清单</div>
+            <div id="watching-list" class="watching-list"></div>
+          </div>
+
+          <p class="hint">
+            数据来源：yuc.wiki（長門番堂）当季新番表。若刷新失败，将展示上次缓存的数据。
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
